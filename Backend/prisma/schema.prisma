@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  username String @unique(map: "username") @db.VarChar(255)
+  password String @db.VarChar(255)
+}
+
+model Users {
+  id         Int    @id @default(autoincrement())
+  password   String @db.VarChar(255)
+  Name       String @db.VarChar(255)
+  Address    String @db.VarChar(255)
+  Image      String @db.VarChar(255)
+  Email      String @unique(map: "Email") @db.VarChar(255)
+  Initiation String @db.VarChar(255)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model OTP {
+  Email String @db.VarChar(255)
+  OTP   String @db.VarChar(255)
+
+  @@ignore
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model Donamtion {
+  Email  String  @id@db.VarChar(255)
+  Amount String @db.VarChar(255)
+  Month  String @db.VarChar(255)
+  Year   String @db.VarChar(255)
+}
